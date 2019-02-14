@@ -110,8 +110,8 @@ function component(width, height, color, x, y) {
 function updateGameArea() {
     if (myGamePiece.crashWith(myObstacle)) {
       myGameArea.stop();
-    } else {
-      if (myGameArea.x && myGameArea.y) {
+    } 
+    if (myGameArea.x && myGameArea.y) {
         if (myUpBtn.clicked()) {
             myGamePiece.y -= 1;
         }
@@ -124,7 +124,6 @@ function updateGameArea() {
         if (myRightBtn.clicked()) {
             myGamePiece.x += 1;
         }
-      }
     }
     myGameArea.clear();
     myObstacle.x += -1;
