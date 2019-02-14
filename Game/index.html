@@ -19,18 +19,14 @@ var myUpBtn;
 var myDownBtn;
 var myLeftBtn;
 var myRightBtn;
-
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
-    myObstacle = new component(10, 200, "green", 200, 120); 
     myUpBtn = new component(30, 30, "blue", 240, 170);    
     myDownBtn = new component(30, 30, "blue", 240, 230);    
     myLeftBtn = new component(30, 30, "blue", 210, 200);    
     myRightBtn = new component(30, 30, "blue", 270, 200);                
     myGameArea.start();
 }
-
-
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
@@ -59,11 +55,7 @@ var myGameArea = {
     clear : function(){
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-    stop : function() {
-        clearInterval(this.interval);
-    }
 }
-
 function component(width, height, color, x, y) {
     this.width = width;
     this.height = height;
@@ -76,34 +68,19 @@ function component(width, height, color, x, y) {
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
-    this.newPos = function() {
-    this.x += this.speedX;
-    this.y += this.speedY;
+    this.clicked = function() {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var clicked = true;
+        if ((mybottom < myGameArea.y) || (mytop > myGameArea.y) || (myright < myGameArea.x) || (myleft > myGameArea.x)) {
+            clicked = false;
+        }
+        return clicked;
     }
-    this.crashWith = function(otherobj) {
-      var myleft = this.x;
-    var myright = this.x + (this.width);
-    var mytop = this.y;
-    var mybottom = this.y + (this.height);
-    var otherleft = otherobj.x;
-    var otherright = otherobj.x + (otherobj.width);
-    var othertop = otherobj.y;
-    var otherbottom = otherobj.y + (otherobj.height);
-    var crash = true;
-    if ((mybottom < othertop) ||
-    (mytop > otherbottom) ||
-    (myright < otherleft) ||
-    (myleft > otherright)) {
-      crash = false;
-    }
-    return crash;
-  }
 }
-
 function updateGameArea() {
-    if (myGamePiece.crashWith(myObstacle)) {
-      myGameArea.stop();
-    } else {
     myGameArea.clear();
     if (myGameArea.x && myGameArea.y) {
         if (myUpBtn.clicked()) {
@@ -119,17 +96,14 @@ function updateGameArea() {
             myGamePiece.x += 1;
         }
     }
-    myUpBtn.update(); 
-    myObstacle.update();       
+    myUpBtn.update();        
     myDownBtn.update();        
     myLeftBtn.update();        
     myRightBtn.update();                                
     myGamePiece.update();
 }
-
 </script>
 
 <p>Click on the blue "buttons" to make the red square move.</p>
 </body>
 </html>
-
