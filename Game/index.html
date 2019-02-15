@@ -22,12 +22,12 @@ function restartGame() {
     document.getElementById("myrestartbutton").style.display = "none";
     myGameArea.stop();
     myGameArea.clear();
+    //context.clearRect(0, 0, canvas.width, canvas.height);
     myGameArea = {};
     myGamePiece = {};
     myObstacles = [];
     myScore = {};
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    //document.getElementById("canvascontainer").innerHTML = "";
+    document.getElementById("canvascontainer").innerHTML = "";
     startGame();
 }
 function startGame() {
@@ -45,8 +45,9 @@ function gamearea() {
     this.canvas = document.createElement("canvas");
     this.canvas.width = 480;
     this.canvas.height = 150;
+    document.getElementById("canvascontainer").appendChild(this.canvas);
+    //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
-    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.frameNo = 0;
     this.start = function() {
         this.interval = setInterval(updateGameArea, 20);
@@ -201,9 +202,9 @@ function clearmove() {
 </script>
 
 
-<div id="myrestartbutton" style="position:absolute;padding-top:75px;padding-left:120px;display:none;"><button onclick="restartGame()">Restart</button></div>
+<div id="myrestartbutton" style="position:absolute;padding-top:65px;padding-left:220px;display:none;"><button onclick="restartGame()">Restart</button></div>
 
-
+<div id="canvascontainer"></div>
 
 
 <div style="text-align:center;width:480px;">
