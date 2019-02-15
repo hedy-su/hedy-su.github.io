@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
 canvas {
-    border:1px solid #d3d3d3;
+    border:3px solid #d3d3d3;
     background-color: #f1f1f1;
 }
 </style>
@@ -16,6 +16,18 @@ var myGamePiece;
 var myObstacles = [];
 var myScore;
 var myBackground;
+
+function restartGame() {
+    document.getElementById("myrestartbutton").style.display = "none";
+//    myGameArea.stop();
+myGameArea.clear();
+//myGameArea = {};
+//myGamePiece = {};
+//myObstacles = [];
+//myScore = {};
+//document.getElementById("canvascontainer").innerHTML = "";
+startGame()
+}
 
 function startGame() {
     myGamePiece = new component(45, 23, "rocket.png", 10, 120, "image");
@@ -122,8 +134,9 @@ function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
 
     for (i = 0; i < myObstacles.length; i += 1) {
-        if (myGamePiece.crashWith(myObstacles[i]) || myGamePiece.y < 0 || myGamePiece.y > (myGameArea.canvas.height - myGamePiece.height) || myGamePiece.x < 0 || myGamePiece.x > myGameArea.canvas.width + myGamePiece.width) { // hard-coded field height
+        if (myGamePiece.crashWith(myObstacles[i]) || myGamePiece.y < 0 || myGamePiece.y > (myGameArea.canvas.height - myGamePiece.height) || myGamePiece.x < 0 || myGamePiece.x > myGameArea.canvas.width + myGamePiece.width) {
             myGameArea.stop();
+	    document.getElementById("myrestartbutton").style.display = "block";
             return;
         }
     }
@@ -200,6 +213,12 @@ function clearmove() {
     myGamePiece.speedY = 0;
 }
 </script>
+
+
+<div id="myrestartbutton" style="position:absolute;padding-top:75px;padding-left:120px;display:none;"><button onclick="restartGame()">Restart</button></div>
+
+
+
 
 <div style="text-align:center;width:480px;">
   <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">^</button><br><br>
