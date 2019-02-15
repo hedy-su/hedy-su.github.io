@@ -22,7 +22,6 @@ function restartGame() {
     document.getElementById("myrestartbutton").style.display = "none";
     myGameArea.stop();
     myGameArea.clear();
-    //context.clearRect(0, 0, canvas.width, canvas.height);
     myGameArea = {};
     myGamePiece = {};
     myObstacles = [];
@@ -32,19 +31,19 @@ function restartGame() {
 }
 function startGame() {
     myGameArea = new gamearea();
-    myGamePiece = new component(45, 23, "rocket.png", 10, 120, "image");
-    myBackground = new component(480, 150, "background.jpeg", 0, 0, "image");
-    myScore = new component("24px", "Consolas", "black", 330, 20, "text");
-    myUpBtn = new component(30, 30, "blue", 415, 55);
-    myDownBtn = new component(30, 30, "blue", 415, 115);
-    myLeftBtn = new component(30, 30, "blue", 385, 85);
-    myRightBtn = new component(30, 30, "blue", 445, 85);
+    myGamePiece = new component(screen.availWidth/10, screen.availHeight/10, "rocket.png", screen.availWidth/100, screen.availHeight/2.5, "image");
+    myBackground = new component(screen.availWidth, screen.availHeight, "background.jpeg", 0, 0, "image");
+    myScore = new component("7vh", "Consolas", "green", screen.availWidth*0.72, screen.availHeight/15, "text");
+    myUpBtn = new component(screen.availWidth/26, screen.availWidth/26, "blue", screen.availWidth*4/5+screen.availWidth/26, screen.availHeight*5/8);
+    myDownBtn = new component(screen.availWidth/26, screen.availWidth/26, "blue", screen.availWidth*4/5+screen.availWidth/26, screen.availHeight*5/8+2*screen.availWidth/26);
+    myLeftBtn = new component(screen.availWidth/26, screen.availWidth/26, "blue", screen.availWidth*4/5, screen.availHeight*5/8+screen.availWidth/26);
+    myRightBtn = new component(screen.availWidth/26, screen.availWidth/26, "blue", screen.availWidth*4/5+2*screen.availWidth/26, screen.availHeight*5/8+screen.availWidth/26);
     myGameArea.start();
 }
 function gamearea() {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = 480;
-    this.canvas.height = 150;
+    this.canvas.width = screen.width;
+    this.canvas.height = screen.height;
     document.getElementById("canvascontainer").appendChild(this.canvas);
     //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
@@ -141,34 +140,34 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(150)) {
+    if (myGameArea.frameNo == 1 || everyinterval(170) || myGameArea.frameNo%170 == 85 && Math.random()<0.1 || myGameArea.frameNo > 500 && myGameArea.frameNo%170 == 85 && Math.random()<0.25) {
         x = myGameArea.canvas.width;
-        minHeight = 20;
-        maxHeight = 100;
+        minHeight = screen.availHeight/50;
+        maxHeight = screen.availHeight*2/3;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = 45;
-        maxGap = 90;
+        minGap = screen.availHeight/10;
+        maxGap = screen.availHeight/5;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "red", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "red", x, height + gap));
+        myObstacles.push(new component(screen.availWidth/32, height, "red", x, 0));
+        myObstacles.push(new component(screen.availWidth/32, x - height - gap, "red", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -1;
+        myObstacles[i].x += -1.75; // difficulty level medium hard
         myObstacles[i].update();
     }
-    if (myGameArea.x && myGameArea.y) { // yes, it works
-      if (myUpBtn.clicked()) {
-      myGamePiece.y -= 3;
-    }
-    if (myDownBtn.clicked()) {
-      myGamePiece.y += 3;
-    }
-    if (myLeftBtn.clicked()) {
-      myGamePiece.x += -3;
-    }
-    if (myRightBtn.clicked()) {
-      myGamePiece.x += 3;
-    }
+    if (myGameArea.x && myGameArea.y) {
+        if (myUpBtn.clicked()) {
+            myGamePiece.y -= screen.availHeight/50;
+        }
+        if (myDownBtn.clicked()) {
+            myGamePiece.y += screen.availHeight/50;
+        }
+        if (myLeftBtn.clicked()) {
+            myGamePiece.x -= screen.availWidth/50;
+        }
+        if (myRightBtn.clicked()) {
+            myGamePiece.x += screen.availWidth/50;
+        }
   }
   myScore.text = "SCORE: " + myGameArea.frameNo;
   myScore.update();
@@ -202,7 +201,7 @@ function clearmove() {
 </script>
 
 
-<div id="myrestartbutton" style="position:absolute;padding-top:65px;padding-left:220px;display:none;"><button onclick="restartGame()">Restart</button></div>
+<div id="myrestartbutton" style="position:absolute;left:50%;top:50%;display:none;"><button onclick="restartGame()">RESTART</button></div>
 
 <div id="canvascontainer"></div>
 
