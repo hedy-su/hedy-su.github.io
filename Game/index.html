@@ -14,13 +14,15 @@ canvas {
 
 var myGamePiece;
 var myObstacles = [];
+var myScore;
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
-    myUpBtn = new component(30, 30, "blue", 400, 20);
-    myDownBtn = new component(30, 30, "blue", 400, 80);
-    myLeftBtn = new component(30, 30, "blue", 370, 50);
-    myRightBtn = new component(30, 30, "blue", 430, 50);
+    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    myUpBtn = new component(30, 30, "blue", 400, 40);
+    myDownBtn = new component(30, 30, "blue", 400, 100);
+    myLeftBtn = new component(30, 30, "blue", 370, 70);
+    myRightBtn = new component(30, 30, "blue", 430, 70);
     myGameArea.start();
 }
 
@@ -51,6 +53,7 @@ var myGameArea = {
 }
 
 function component(width, height, color, x, y) {
+    this.type = type;
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -59,8 +62,13 @@ function component(width, height, color, x, y) {
     this.y = y;
     this.update = function() {
         ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        if (this.type == "text") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
+            ctx.fillText(this.text, this.x, this.y);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
     this.clicked = function() {
@@ -121,6 +129,8 @@ function updateGameArea() {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
+    myScore.text = "SCORE: " + myGameArea.frameNo;
+    myScore.update();
     myGamePiece.newPos();
 
     if (myGameArea.x && myGameArea.y) { // yes, it works
@@ -142,9 +152,7 @@ function updateGameArea() {
   myLeftBtn.update();
   myRightBtn.update();
 
-
-
-    myGamePiece.update();
+  myGamePiece.update();
 }
 
 function everyinterval(n) {
