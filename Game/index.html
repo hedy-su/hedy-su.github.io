@@ -16,20 +16,22 @@ var myGamePiece;
 var myObstacles = [];
 var myScore;
 var myBackground;
+var myGameArea;
 
 function restartGame() {
     document.getElementById("myrestartbutton").style.display = "none";
-//    myGameArea.stop();
-myGameArea.clear();
-//myGameArea = {};
-//myGamePiece = {};
-//myObstacles = [];
-//myScore = {};
-//document.getElementById("canvascontainer").innerHTML = "";
-startGame()
+    myGameArea.stop();
+    myGameArea.clear();
+    myGameArea = {};
+    myGamePiece = {};
+    myObstacles = [];
+    myScore = {};
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    //document.getElementById("canvascontainer").innerHTML = "";
+    startGame();
 }
-
 function startGame() {
+    myGameArea = new gamearea();
     myGamePiece = new component(45, 23, "rocket.png", 10, 120, "image");
     myBackground = new component(480, 150, "background.jpeg", 0, 0, "image");
     myScore = new component("24px", "Consolas", "black", 330, 20, "text");
@@ -39,17 +41,16 @@ function startGame() {
     myRightBtn = new component(30, 30, "blue", 445, 85);
     myGameArea.start();
 }
-
-var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = 480;
-        this.canvas.height = 150;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.frameNo = 0;
+function gamearea() {
+    this.canvas = document.createElement("canvas");
+    this.canvas.width = 480;
+    this.canvas.height = 150;
+    this.context = this.canvas.getContext("2d");
+    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    this.frameNo = 0;
+    this.start = function() {
         this.interval = setInterval(updateGameArea, 20);
-	window.addEventListener('touchstart', function (e) {
+        window.addEventListener('touchstart', function (e) {
           myGameArea.x = e.pageX;
           myGameArea.y = e.pageY;
         })
@@ -57,15 +58,14 @@ var myGameArea = {
           myGameArea.x = false;
           myGameArea.y = false;
         })
-    },
-    clear : function() {
+    }
+    this.clear = function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    },
-    stop : function() {
+    }
+    this.stop = function() {
         clearInterval(this.interval);
     }
 }
-
 function component(width, height, color, x, y, type) {
     this.type = type;
     if (type == "image") {
@@ -96,7 +96,6 @@ function component(width, height, color, x, y, type) {
             }
         }
     }
-
     this.clicked = function() {
     var myleft = this.x;
     var myright = this.x + (this.width);
@@ -108,7 +107,6 @@ function component(width, height, color, x, y, type) {
     }
     return clicked;
     }
-
     this.newPos = function() { // ???
         this.x += this.speedX;
         this.y += this.speedY;
@@ -129,10 +127,8 @@ function component(width, height, color, x, y, type) {
         return crash;
     }
 }
-
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i]) || myGamePiece.y < 0 || myGamePiece.y > (myGameArea.canvas.height - myGamePiece.height) || myGamePiece.x < 0 || myGamePiece.x > myGameArea.canvas.width + myGamePiece.width) {
             myGameArea.stop();
@@ -140,12 +136,10 @@ function updateGameArea() {
             return;
         }
     }
-
     myGameArea.clear();
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         x = myGameArea.canvas.width;
         minHeight = 20;
@@ -161,7 +155,6 @@ function updateGameArea() {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-
     if (myGameArea.x && myGameArea.y) { // yes, it works
       if (myUpBtn.clicked()) {
       myGamePiece.y -= 3;
@@ -176,7 +169,6 @@ function updateGameArea() {
       myGamePiece.x += 3;
     }
   }
-
   myScore.text = "SCORE: " + myGameArea.frameNo;
   myScore.update();
   myGamePiece.newPos();
@@ -186,28 +178,22 @@ function updateGameArea() {
   myLeftBtn.update();
   myRightBtn.update();
 }
-
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
 }
-
 function moveup() {
     myGamePiece.speedY = -1;
 }
-
 function movedown() {
     myGamePiece.speedY = 1;
 }
-
 function moveleft() {
     myGamePiece.speedX = -1;
 }
-
 function moveright() {
     myGamePiece.speedX = 1;
 }
-
 function clearmove() {
     myGamePiece.speedX = 0;
     myGamePiece.speedY = 0;
