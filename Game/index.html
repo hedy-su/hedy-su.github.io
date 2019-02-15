@@ -5,7 +5,7 @@
 <style>
 canvas {
     border:1px solid #d3d3d3;
-    background-color: #a1a1f1;
+    background-color: #f1f1f1;
 }
 </style>
 </head>
@@ -17,10 +17,10 @@ var myObstacles = [];
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
-    myUpBtn = new component(30, 30, "blue", 50, 10);
-    myDownBtn = new component(30, 30, "blue", 50, 70);
-    myLeftBtn = new component(30, 30, "blue", 20, 40);
-    myRightBtn = new component(30, 30, "blue", 80, 40);
+    myUpBtn = new component(30, 30, "blue", 400, 20);
+    myDownBtn = new component(30, 30, "blue", 400, 80);
+    myLeftBtn = new component(30, 30, "blue", 370, 50);
+    myRightBtn = new component(30, 30, "blue", 430, 50);
     myGameArea.start();
 }
 
@@ -123,18 +123,18 @@ function updateGameArea() {
     }
     myGamePiece.newPos();
 
-    if (myGameArea.x && myGameArea.y) { // ???
+    if (myGameArea.x && myGameArea.y) { // yes, it works
       if (myUpBtn.clicked()) {
-      myGamePiece.y -= 1;
+      myGamePiece.y -= 3;
     }
     if (myDownBtn.clicked()) {
-      myGamePiece.y += 1;
+      myGamePiece.y += 3;
     }
     if (myLeftBtn.clicked()) {
-      myGamePiece.x += -1;
+      myGamePiece.x += -3;
     }
     if (myRightBtn.clicked()) {
-      myGamePiece.x += 1;
+      myGamePiece.x += 3;
     }
   }
   myUpBtn.update();
