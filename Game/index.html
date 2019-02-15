@@ -15,14 +15,16 @@ canvas {
 var myGamePiece;
 var myObstacles = [];
 var myScore;
+var myBackground;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 10, 120);
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
-    myUpBtn = new component(30, 30, "blue", 410, 50);
-    myDownBtn = new component(30, 30, "blue", 410, 110);
-    myLeftBtn = new component(30, 30, "blue", 380, 80);
-    myRightBtn = new component(30, 30, "blue", 440, 80);
+    myGamePiece = new component(45, 23, "rocket.png", 10, 120, "image");
+    myBackground = new component(480, 150, "background.jpeg", 0, 0, "image");
+    myScore = new component("24px", "Consolas", "black", 330, 20, "text");
+    myUpBtn = new component(30, 30, "blue", 415, 55);
+    myDownBtn = new component(30, 30, "blue", 415, 115);
+    myLeftBtn = new component(30, 30, "blue", 385, 85);
+    myRightBtn = new component(30, 30, "blue", 445, 85);
     myGameArea.start();
 }
 
@@ -54,6 +56,10 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+    }
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -62,6 +68,12 @@ function component(width, height, color, x, y, type) {
     this.y = y;
     this.update = function() {
         ctx = myGameArea.context;
+        if (type == "image") {
+            ctx.drawImage(this.image,
+            this.x,
+            this.y,
+            this.width, this.height);
+        } else {
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
@@ -70,6 +82,7 @@ function component(width, height, color, x, y, type) {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
             }
+        }
     }
 
     this.clicked = function() {
@@ -107,32 +120,34 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+
     for (i = 0; i < myObstacles.length; i += 1) {
-        if (myGamePiece.crashWith(myObstacles[i])) {
+        if (myGamePiece.crashWith(myObstacles[i]) || myGamePiece.y < 0 || myGamePiece.y > (150 - myGamePiece.height)) { // hard-coded field height
             myGameArea.stop();
             return;
         }
     }
+
     myGameArea.clear();
     myGameArea.frameNo += 1;
+    myBackground.newPos();
+    myBackground.update();
+
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         x = myGameArea.canvas.width;
-        minHeight = 10;
+        minHeight = 20;
         maxHeight = 100;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = 50;
-        maxGap = 100;
+        minGap = 45;
+        maxGap = 90;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "green", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+        myObstacles.push(new component(10, height, "red", x, 0));
+        myObstacles.push(new component(10, x - height - gap, "red", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    myScore.text = "SCORE: " + myGameArea.frameNo;
-    myScore.update();
-    myGamePiece.newPos();
 
     if (myGameArea.x && myGameArea.y) { // yes, it works
       if (myUpBtn.clicked()) {
@@ -148,12 +163,15 @@ function updateGameArea() {
       myGamePiece.x += 3;
     }
   }
+
+  myScore.text = "SCORE: " + myGameArea.frameNo;
+  myScore.update();
+  myGamePiece.newPos();
+  myGamePiece.update();
   myUpBtn.update();
   myDownBtn.update();
   myLeftBtn.update();
   myRightBtn.update();
-
-  myGamePiece.update();
 }
 
 function everyinterval(n) {
