@@ -5,7 +5,7 @@
 <style>
 canvas {
     border:1px solid #d3d3d3;
-    background-color: #f1f1f1;
+    background-color: #a1a1f1;
 }
 </style>
 </head>
@@ -54,15 +54,15 @@ function component(width, height, color, x, y) {
     this.width = width;
     this.height = height;
     this.speedX = 0;
-    this.speedY = 0;    
+    this.speedY = 0;
     this.x = x;
-    this.y = y;    
+    this.y = y;
     this.update = function() {
         ctx = myGameArea.context;
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
-   
+
     this.clicked = function() {
     var myleft = this.x;
     var myright = this.x + (this.width);
@@ -77,8 +77,8 @@ function component(width, height, color, x, y) {
 
     this.newPos = function() { // ???
         this.x += this.speedX;
-        this.y += this.speedY;        
-    }    
+        this.y += this.speedY;
+    }
     this.crashWith = function(otherobj) {
         var myleft = this.x;
         var myright = this.x + (this.width);
@@ -102,7 +102,7 @@ function updateGameArea() {
         if (myGamePiece.crashWith(myObstacles[i])) {
             myGameArea.stop();
             return;
-        } 
+        }
     }
     myGameArea.clear();
     myGameArea.frameNo += 1;
@@ -143,7 +143,7 @@ function updateGameArea() {
   myRightBtn.update();
 
 
-    
+
     myGamePiece.update();
 }
 
@@ -153,24 +153,24 @@ function everyinterval(n) {
 }
 
 function moveup() {
-    myGamePiece.speedY = -1; 
+    myGamePiece.speedY = -1;
 }
 
 function movedown() {
-    myGamePiece.speedY = 1; 
+    myGamePiece.speedY = 1;
 }
 
 function moveleft() {
-    myGamePiece.speedX = -1; 
+    myGamePiece.speedX = -1;
 }
 
 function moveright() {
-    myGamePiece.speedX = 1; 
+    myGamePiece.speedX = 1;
 }
 
 function clearmove() {
-    myGamePiece.speedX = 0; 
-    myGamePiece.speedY = 0; 
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;
 }
 </script>
 <div style="text-align:center;width:480px;">
@@ -181,4 +181,3 @@ function clearmove() {
 </div>
 </body>
 </html>
-
