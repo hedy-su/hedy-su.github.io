@@ -122,7 +122,7 @@ function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
 
     for (i = 0; i < myObstacles.length; i += 1) {
-        if (myGamePiece.crashWith(myObstacles[i]) || myGamePiece.y < 0 || myGamePiece.y > (150 - myGamePiece.height)) { // hard-coded field height
+        if (myGamePiece.crashWith(myObstacles[i]) || myGamePiece.y < 0 || myGamePiece.y > (myGameArea.canvas.height - myGamePiece.height) || myGamePiece.x < 0 || myGamePiece.x > myGameArea.canvas.width + myGamePiece.width) { // hard-coded field height
             myGameArea.stop();
             return;
         }
@@ -198,16 +198,15 @@ function moveright() {
 function clearmove() {
     myGamePiece.speedX = 0;
     myGamePiece.speedY = 0;
-    /*
-    <div style="text-align:center;width:480px;">
+}
+</script>
+
+<div style="text-align:center;width:480px;">
   <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">^</button><br><br>
   <button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()"><</button>
   <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">></button><br><br>
   <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
 </div>
-*/
-}
-</script>
 
 </body>
 </html>
