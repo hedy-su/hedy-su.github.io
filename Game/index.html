@@ -32,8 +32,8 @@ function restartGame() {
 function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/100, screen.availWidth/2, "image");
-    myBackground = new component(screen.availHeight*0.99, screen.availWidth*0.96, "background.jpeg", 0, 0, "image");
-    var myScoreFontSize = 0.09*Math.min(screen.availWidth, screen.availHeight);
+    myBackground = new component(screen.availHeight*0.98, screen.availWidth*0.95, "background.jpeg", 0, 0, "image");
+    var myScoreFontSize = 0.15*Math.min(screen.availWidth, screen.availHeight);
     myScore = new component(myScoreFontSize, "Consolas", "green", screen.availHeight*0.6, screen.availWidth*0.1, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2);
     myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth);
@@ -141,7 +141,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(200) || myGameArea.frameNo%200 == 100 && Math.random()<0.2 || myGameArea.frameNo > 500 && myGameArea.frameNo%200 == 100 && Math.random()<0.4) {
+    if (myGameArea.frameNo == 1 || everyinterval(190) || myGameArea.frameNo%190 == 95 && Math.random()<0.2 || myGameArea.frameNo > 500 && myGameArea.frameNo%190 == 95 && Math.random()<0.4) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
@@ -153,7 +153,7 @@ function updateGameArea() {
         myObstacles.push(new component(screen.availWidth/32, x - height - gap, "red", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -1.75; // difficulty level medium hard
+        myObstacles[i].x += -1.85; // difficulty level medium hard
         myObstacles[i].update();
     }
     if (myGameArea.x && myGameArea.y) {
