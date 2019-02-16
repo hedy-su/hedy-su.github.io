@@ -32,7 +32,7 @@ function restartGame() {
 function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/100, screen.availWidth/2, "image");
-    myBackground = new component(screen.availHeight*0.9, screen.availWidth*0.9, "background.jpeg", 0, 0, "image");
+    myBackground = new component(screen.availHeight*0.96, screen.availWidth*0.94, "background.jpeg", 0, 0, "image");
     myScore = new component("9vh", "Consolas", "green", screen.availHeight*0.7, screen.availWidth*0.1, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2);
     myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth);
@@ -42,8 +42,8 @@ function startGame() {
 }
 function gamearea() {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = screen.availHeight*0.9;
-    this.canvas.height = screen.availWidth*0.9;
+    this.canvas.width = screen.availHeight*0.96;
+    this.canvas.height = screen.availWidth*0.94;
     document.getElementById("canvascontainer").appendChild(this.canvas);
     //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
@@ -145,7 +145,7 @@ function updateGameArea() {
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = screen.availWidth/8;
+        minGap = screen.availWidth/7;
         maxGap = screen.availWidth/4;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(screen.availWidth/32, height, "red", x, 0));
@@ -157,16 +157,16 @@ function updateGameArea() {
     }
     if (myGameArea.x && myGameArea.y) {
         if (myUpBtn.clicked()) {
-            myGamePiece.y -= screen.availHeight/50;
+            myGamePiece.y -= screen.availWidth/70;
         }
         if (myDownBtn.clicked()) {
-            myGamePiece.y += screen.availHeight/50;
+            myGamePiece.y += screen.availWidth/70;
         }
         if (myLeftBtn.clicked()) {
-            myGamePiece.x -= screen.availWidth/50;
+            myGamePiece.x -= screen.availWidth/70;
         }
         if (myRightBtn.clicked()) {
-            myGamePiece.x += screen.availWidth/50;
+            myGamePiece.x += screen.availWidth/70;
         }
   }
   myScore.text = "SCORE: " + myGameArea.frameNo;
