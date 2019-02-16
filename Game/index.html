@@ -31,13 +31,13 @@ function restartGame() {
 }
 function startGame() {
     myGameArea = new gamearea();
-    myGamePiece = new component(screen.availWidth/10, screen.availHeight/10, "rocket.png", screen.availWidth/100, screen.availHeight/2.5, "image");
-    myBackground = new component(screen.availWidth, screen.availHeight, "background.jpeg", 0, 0, "image");
-    myScore = new component("9vh", "Consolas", "green", screen.availWidth*0.7, screen.availHeight*2/3, "text");
-    myUpBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5+screen.availWidth/26, screen.availHeight*5/8);
-    myDownBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5+screen.availWidth/26, screen.availHeight*5/8+2*screen.availWidth/26);
-    myLeftBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5, screen.availHeight*5/8+screen.availWidth/26);
-    myRightBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5+2*screen.availWidth/26, screen.availHeight*5/8+screen.availWidth/26);
+    myGamePiece = new component(screen.availHeight/10, screen.availWidth/10, "rocket.png", screen.availWidth/100, screen.availHeight/2.5, "image");
+    myBackground = new component(screen.availHeight, screen.availWidth, "background.jpeg", 0, 0, "image");
+    myScore = new component("9vh", "Consolas", "green", screen.availHeight*0.6, screen.availWidth*4/5, "text");
+    myUpBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*0.5, screen.availHeight*1/5+screen.availHeight/26);
+    myDownBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*0.5+2*screen.availWidth/10, screen.availHeight*1/5+screen.availHeight/26);
+    myLeftBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*0.5+screen.availWidth/10, screen.availHeight*1/5);
+    myRightBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*0.5+screen.availWidth/10, screen.availHeight*1/5+2*screen.availHeight/26);
     myGameArea.start();
 }
 function gamearea() {
@@ -145,8 +145,8 @@ function updateGameArea() {
         minHeight = screen.availHeight/50;
         maxHeight = screen.availHeight*2/3;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = screen.availHeight/10;
-        maxGap = screen.availHeight/5;
+        minGap = screen.availHeight/8;
+        maxGap = screen.availHeight/4;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(screen.availWidth/32, height, "red", x, 0));
         myObstacles.push(new component(screen.availWidth/32, x - height - gap, "red", x, height + gap));
