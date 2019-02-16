@@ -174,11 +174,11 @@ function updateGameArea() {
 
 
     //Ermittelt die Beschleunigung entsprechend der Bildschirmorientierung
-    if (everyinterval(20)){
+    //if (everyinterval(20)){
         if (window.DeviceOrientationEvent) {
             window.addEventListener("devicemotion", function (event) {
             myGamePiece.x += event.rotationRate.beta/100; // beta -> x coordinate
-            myGamePiece.y += event.rotationRate.beta/100; // gamma -> y coordinate
+            myGamePiece.y += event.rotationRate.gamma/100; // gamma -> y coordinate; https://w3c.github.io/deviceorientation/
             // myGamePiece.x += event.acceleration.y/100; // mixing acceleration with movement!
             // myGamePiece.y += event.acceleration.x/100;
             /*
@@ -209,7 +209,7 @@ function updateGameArea() {
         } else {
             alert("Sorry, ihr Gerät unterstützt keine Bildschirmorientierung!");
         }
-    }
+    //}
 
 
 
