@@ -33,11 +33,11 @@ function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availWidth/10, screen.availHeight/10, "rocket.png", screen.availWidth/100, screen.availHeight/2.5, "image");
     myBackground = new component(screen.availHeight, screen.availWidth, "background.jpeg", 0, 0, "image");
-    myScore = new component("9vh", "Consolas", "green", screen.availWidth*0.2, screen.availHeight*2/3, "text");
-    myUpBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*4/5+screen.availWidth/26, screen.availHeight*5/8);
-    myDownBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*4/5+screen.availWidth/26, screen.availHeight*5/8+2*screen.availWidth/26);
-    myLeftBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*4/5, screen.availHeight*5/8+screen.availWidth/26);
-    myRightBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*4/5+2*screen.availWidth/26, screen.availHeight*5/8+screen.availWidth/26);
+    myScore = new component("9vh", "Consolas", "green", screen.availWidth*0.9, screen.availHeight/15, "text");
+    myUpBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5+screen.availWidth/26, screen.availHeight*5/8);
+    myDownBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5+screen.availWidth/26, screen.availHeight*5/8+2*screen.availWidth/26);
+    myLeftBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5, screen.availHeight*5/8+screen.availWidth/26);
+    myRightBtn = new component(screen.availWidth/10, screen.availWidth/10, "blue", screen.availWidth*1/5+2*screen.availWidth/26, screen.availHeight*5/8+screen.availWidth/26);
     myGameArea.start();
 }
 function gamearea() {
