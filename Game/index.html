@@ -42,8 +42,8 @@ function startGame() {
 }
 function gamearea() {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = screen.availHeight*7/8;
-    this.canvas.height = screen.availWidth*7/8;
+    this.canvas.width = screen.availHeight;
+    this.canvas.height = screen.availWidth;
     document.getElementById("canvascontainer").appendChild(this.canvas);
     //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
