@@ -176,8 +176,8 @@ function updateGameArea() {
     //Ermittelt die Beschleunigung entsprechend der Bildschirmorientierung
         if (window.DeviceOrientationEvent) {
             window.addEventListener("devicemotion", function (event) {
-            myGamePiece.x += event.acceleration.x/50;
-            myGamePiece.y += event.acceleration.y/50;
+            myGamePiece.x += event.acceleration.y/100;
+            myGamePiece.y += event.acceleration.x/100;
             /*
                 switch (window.orientation) {
                     case 0:
