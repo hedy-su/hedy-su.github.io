@@ -17,6 +17,7 @@ var myObstacles = [];
 var myScore;
 var myBackground;
 var myGameArea;
+var myObstaclesSpeed = 1.85;
 
 function restartGame() {
     document.getElementById("myrestartbutton").style.display = "none";
@@ -151,7 +152,9 @@ function updateGameArea() {
         myObstacles.push(new component(screen.availWidth/25, x - height - gap, "red", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -2; // difficulty level medium hard
+        if (myGameArea.frameNo%250 == 0)
+            myObstaclesSpeed += 0.15;
+        myObstacles[i].x += -myObstaclesSpeed; // "difficulty level"
         myObstacles[i].update();
     }
     if (myGameArea.x && myGameArea.y) {
