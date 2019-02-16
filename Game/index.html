@@ -139,7 +139,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(220) || myGameArea.frameNo%220 == 110 && Math.random()<0.3 || myGameArea.frameNo > 500 && myGameArea.frameNo%220 == 110 && Math.random()<0.4) {
+    if (myGameArea.frameNo == 1 || everyinterval(200) || myGameArea.frameNo%200 == 100 && Math.random()<0.4 || myGameArea.frameNo > 500 && myGameArea.frameNo%200 == 100 && Math.random()>0.6) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
