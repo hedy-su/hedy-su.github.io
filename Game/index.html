@@ -31,7 +31,7 @@ function restartGame() {
 }
 function startGame() {
     myGameArea = new gamearea();
-    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/10, screen.availWidth/2, "image");
+    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/7, screen.availWidth/2, "image");
     myBackground = new component(screen.availHeight*0.975, screen.availWidth*0.955, "background.jpeg", 0, 0, "image");
     //var myScoreFontSize = 0.5*Math.min(screen.availWidth, screen.availHeight);
     myScore = new component("10vmin", "Comic Sans MS Bold", "green", screen.availHeight*0.6, screen.availWidth*0.1, "text");
@@ -177,8 +177,8 @@ function updateGameArea() {
     //if (everyinterval(20)){
         if (window.DeviceOrientationEvent) {
             window.addEventListener("devicemotion", function (event) {
-            myGamePiece.y -= event.rotationRate.beta/3000; // beta -> x coordinate
-            myGamePiece.x += event.rotationRate.gamma/10000; // gamma -> y coordinate; https://w3c.github.io/deviceorientation/
+            myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x coordinate
+            //myGamePiece.x += event.rotationRate.gamma/10000; // gamma -> y coordinate; https://w3c.github.io/deviceorientation/
 
             // myGamePiece.x += event.acceleration.y/100; // mixing acceleration with movement!
             // myGamePiece.y += event.acceleration.x/100;
