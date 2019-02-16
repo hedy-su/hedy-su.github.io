@@ -31,7 +31,7 @@ function restartGame() {
 }
 function startGame() {
     myGameArea = new gamearea();
-    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/6, screen.availWidth/2, "image");
+    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/7, screen.availWidth/2, "image");
     myBackground = new component(screen.availHeight*0.975, screen.availWidth*0.955, "background.jpeg", 0, 0, "image");
     myScore = new component("10vmin", "Comic Sans MS Bold", "green", screen.availHeight*0.6, screen.availWidth*0.08, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2);
@@ -106,7 +106,7 @@ function component(width, height, color, x, y, type) {
     }
     return clicked;
     }
-    this.newPos = function() { // ???
+    this.newPos = function() {
         this.x += this.speedX;
         this.y += this.speedY;
     }
@@ -147,8 +147,8 @@ function updateGameArea() {
         minGap = screen.availWidth/6;
         maxGap = screen.availWidth/4;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(screen.availWidth/32, height, "red", x, 0));
-        myObstacles.push(new component(screen.availWidth/32, x - height - gap, "red", x, height + gap));
+        myObstacles.push(new component(screen.availWidth/27, height, "red", x, 0));
+        myObstacles.push(new component(screen.availWidth/27, x - height - gap, "red", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1.85; // difficulty level medium hard
@@ -168,50 +168,14 @@ function updateGameArea() {
             myGamePiece.x += screen.availWidth/80;
         }
     }
-
-
-
-    //Ermittelt die Beschleunigung entsprechend der Bildschirmorientierung
-    //if (everyinterval(20)){
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("devicemotion", function (event) {
-            myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x coordinate
-            myGamePiece.x += event.rotationRate.gamma/10000; // gamma -> y coordinate; https://w3c.github.io/deviceorientation/
-
-            // myGamePiece.x += event.acceleration.y/100; // mixing acceleration with movement!
-            // myGamePiece.y += event.acceleration.x/100;
-            /*
-                switch (window.orientation) {
-                    case 0:
-                        accelx = event.accelerationIncludingGravity.x * (-1);
-                        accely = event.accelerationIncludingGravity.y * (-1);
-                        break;
-
-                    case -90:
-                        accelx = event.accelerationIncludingGravity.y * (-1);
-                        accely = event.accelerationIncludingGravity.x;
-                        break;
-
-                    case 90:
-                        accelx = event.accelerationIncludingGravity.y;
-                        accely = event.accelerationIncludingGravity.x * (-1);
-                        break;
-
-                    case 180:
-                        accelx = event.accelerationIncludingGravity.x;
-                        accely = event.accelerationIncludingGravity.y;
-                        break;
-
-                }
-            */
-            }, true);
-        } else {
-            alert("Sorry, ihr Gerät unterstützt keine Bildschirmorientierung!");
-        }
-    //}
-
-
-
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("devicemotion", function (event) {
+        myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x coordinate; https://w3c.github.io/deviceorientation/
+        //myGamePiece.x += event.rotationRate.gamma/10000; // gamma -> y coordinate
+        }, true);
+    } else {
+        alert("Sorry, this device does not support the rotation function; please use the arrows to navigate!");
+    }
     myScore.text = "SCORE: " + myGameArea.frameNo;
     myScore.update();
     myGamePiece.newPos();
@@ -224,22 +188,6 @@ function updateGameArea() {
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
-}
-function moveup() {
-    myGamePiece.speedY = -1;
-}
-function movedown() {
-    myGamePiece.speedY = 1;
-}
-function moveleft() {
-    myGamePiece.speedX = -1;
-}
-function moveright() {
-    myGamePiece.speedX = 1;
-}
-function clearmove() {
-    myGamePiece.speedX = 0;
-    myGamePiece.speedY = 0;
 }
 </script>
 
