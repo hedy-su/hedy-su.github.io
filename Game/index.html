@@ -31,10 +31,9 @@ function restartGame() {
 }
 function startGame() {
     myGameArea = new gamearea();
-    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/7, screen.availWidth/2, "image");
+    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/6, screen.availWidth/2, "image");
     myBackground = new component(screen.availHeight*0.975, screen.availWidth*0.955, "background.jpeg", 0, 0, "image");
-    //var myScoreFontSize = 0.5*Math.min(screen.availWidth, screen.availHeight);
-    myScore = new component("10vmin", "Comic Sans MS Bold", "green", screen.availHeight*0.6, screen.availWidth*0.1, "text");
+    myScore = new component("10vmin", "Comic Sans MS Bold", "green", screen.availHeight*0.6, screen.availWidth*0.08, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2);
     myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth);
     myLeftBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8-screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth);
@@ -46,7 +45,6 @@ function gamearea() {
     this.canvas.width = screen.availHeight*0.975;
     this.canvas.height = screen.availWidth*0.955;
     document.getElementById("canvascontainer").appendChild(this.canvas);
-    //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
     this.frameNo = 0;
     this.start = function() {
@@ -178,7 +176,7 @@ function updateGameArea() {
         if (window.DeviceOrientationEvent) {
             window.addEventListener("devicemotion", function (event) {
             myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x coordinate
-            //myGamePiece.x += event.rotationRate.gamma/10000; // gamma -> y coordinate; https://w3c.github.io/deviceorientation/
+            myGamePiece.x += event.rotationRate.gamma/10000; // gamma -> y coordinate; https://w3c.github.io/deviceorientation/
 
             // myGamePiece.x += event.acceleration.y/100; // mixing acceleration with movement!
             // myGamePiece.y += event.acceleration.x/100;
