@@ -32,7 +32,7 @@ function restartGame() {
 function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/100, screen.availWidth/2, "image");
-    myBackground = new component(screen.availHeight, screen.availWidth, "background.jpeg", 0, 0, "image");
+    myBackground = new component(screen.availHeight*0.975, screen.availWidth*0.955, "background.jpeg", 0, 0, "image");
     //var myScoreFontSize = 0.5*Math.min(screen.availWidth, screen.availHeight);
     myScore = new component("10vmin", "Comic Sans MS Bold", "green", screen.availHeight*0.6, screen.availWidth*0.1, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2);
@@ -43,8 +43,8 @@ function startGame() {
 }
 function gamearea() {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = screen.availHeight;
-    this.canvas.height = screen.availWidth;
+    this.canvas.width = screen.availHeight*0.975;
+    this.canvas.height = screen.availWidth*0.955;
     document.getElementById("canvascontainer").appendChild(this.canvas);
     //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
