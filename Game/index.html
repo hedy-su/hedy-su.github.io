@@ -32,7 +32,7 @@ function restartGame() {
 function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availWidth/10, screen.availHeight/10, "rocket.png", screen.availWidth/100, screen.availHeight/2.5, "image");
-    myBackground = new component(screen.availWidth, screen.availHeight, "background.jpeg", 0, 0, "image");
+    myBackground = new component(screen.availHeight, screen.availWidth, "background.jpeg", 0, 0, "image");
     myScore = new component("7vh", "Consolas", "green", screen.availWidth*0.72, screen.availHeight/15, "text");
     myUpBtn = new component(screen.availWidth/26, screen.availWidth/26, "blue", screen.availWidth*4/5+screen.availWidth/26, screen.availHeight*5/8);
     myDownBtn = new component(screen.availWidth/26, screen.availWidth/26, "blue", screen.availWidth*4/5+screen.availWidth/26, screen.availHeight*5/8+2*screen.availWidth/26);
@@ -42,8 +42,8 @@ function startGame() {
 }
 function gamearea() {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = screen.width;
-    this.canvas.height = screen.height;
+    this.canvas.width = screen.availHeight;
+    this.canvas.height = screen.availWidth;
     document.getElementById("canvascontainer").appendChild(this.canvas);
     //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
@@ -205,13 +205,6 @@ function clearmove() {
 
 <div id="canvascontainer"></div>
 
-
-<div style="text-align:center;width:480px;">
-  <button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">^</button><br><br>
-  <button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()"><</button>
-  <button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">></button><br><br>
-  <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
-</div>
 
 </body>
 </html>
