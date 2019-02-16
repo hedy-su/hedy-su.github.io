@@ -169,15 +169,51 @@ function updateGameArea() {
         if (myRightBtn.clicked()) {
             myGamePiece.x += screen.availWidth/80;
         }
-  }
-  myScore.text = "SCORE: " + myGameArea.frameNo;
-  myScore.update();
-  myGamePiece.newPos();
-  myGamePiece.update();
-  myUpBtn.update();
-  myDownBtn.update();
-  myLeftBtn.update();
-  myRightBtn.update();
+    }
+
+
+
+    //Ermittelt die Beschleunigung entsprechend der Bildschirmorientierung
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("devicemotion", function (event) {
+                switch (window.orientation) {
+                    case 0:
+                        accelx = event.accelerationIncludingGravity.x * (-1);
+                        accely = event.accelerationIncludingGravity.y * (-1);
+                        break;
+
+                    case -90:
+                        accelx = event.accelerationIncludingGravity.y * (-1);
+                        accely = event.accelerationIncludingGravity.x;
+                        break;
+
+                    case 90:
+                        accelx = event.accelerationIncludingGravity.y;
+                        accely = event.accelerationIncludingGravity.x * (-1);
+                        break;
+
+                    case 180:
+                        accelx = event.accelerationIncludingGravity.x;
+                        accely = event.accelerationIncludingGravity.y;
+                        break;
+
+                }
+            }, true);
+        } else {
+            alert("Sorry, ihr Gerät unterstützt keine Bildschirmorientierung!");
+        }
+
+
+
+
+    myScore.text = "SCORE: " + myGameArea.frameNo;
+    myScore.update();
+    myGamePiece.newPos();
+    myGamePiece.update();
+    myUpBtn.update();
+    myDownBtn.update();
+    myLeftBtn.update();
+    myRightBtn.update();
 }
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
