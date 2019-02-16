@@ -177,8 +177,8 @@ function updateGameArea() {
     if (everyinterval(20)){
         if (window.DeviceOrientationEvent) {
             window.addEventListener("devicemotion", function (event) {
-            myGamePiece.y += event.rotationRate.beta; // beta -> x coordinate
-            myGamePiece.x += event.rotationRate.beta; // gamma -> y coordinate
+            myGamePiece.x += event.rotationRate.beta/100; // beta -> x coordinate
+            myGamePiece.y += event.rotationRate.beta/100; // gamma -> y coordinate
             // myGamePiece.x += event.acceleration.y/100; // mixing acceleration with movement!
             // myGamePiece.y += event.acceleration.x/100;
             /*
