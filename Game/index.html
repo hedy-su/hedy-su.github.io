@@ -139,7 +139,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(200) || myGameArea.frameNo%200 == 100 && Math.random()<0.4 || myGameArea.frameNo > 500 && myGameArea.frameNo%200 == 100 && Math.random()>0.6) {
+    if (myGameArea.frameNo == 1 || everyinterval(190) || myGameArea.frameNo%190 == 95 && Math.random()<0.3 || myGameArea.frameNo > 500 && myGameArea.frameNo%190 == 95 && Math.random()>0.5) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
@@ -151,7 +151,7 @@ function updateGameArea() {
         myObstacles.push(new component(screen.availWidth/25, x - height - gap, "red", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
-        myObstacles[i].x += -1.85; // difficulty level medium hard
+        myObstacles[i].x += -2; // difficulty level medium hard
         myObstacles[i].update();
     }
     if (myGameArea.x && myGameArea.y) {
