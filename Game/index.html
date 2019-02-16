@@ -32,8 +32,8 @@ function restartGame() {
 function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/100, screen.availWidth/2, "image");
-    myBackground = new component(screen.availHeight*0.96, screen.availWidth*0.94, "background.jpeg", 0, 0, "image");
-    myScore = new component("9vh", "Consolas", "green", screen.availHeight*0.7, screen.availWidth*0.1, "text");
+    myBackground = new component(screen.availHeight*0.98, screen.availWidth*0.98, "background.jpeg", 0, 0, "image");
+    myScore = new component("9vh", "Consolas", "green", screen.availHeight*0.6, screen.availWidth*0.1, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2);
     myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth);
     myLeftBtn = new component(screen.availWidth/8, screen.availWidth/8, "blue", screen.availHeight*0.8-screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth);
@@ -42,8 +42,8 @@ function startGame() {
 }
 function gamearea() {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = screen.availHeight*0.96;
-    this.canvas.height = screen.availWidth*0.94;
+    this.canvas.width = screen.availHeight*0.98;
+    this.canvas.height = screen.availWidth*0.98;
     document.getElementById("canvascontainer").appendChild(this.canvas);
     //document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.context = this.canvas.getContext("2d");
@@ -140,12 +140,12 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(170) || myGameArea.frameNo%170 == 85 && Math.random()<0.1 || myGameArea.frameNo > 500 && myGameArea.frameNo%170 == 85 && Math.random()<0.25) {
+    if (myGameArea.frameNo == 1 || everyinterval(200) || myGameArea.frameNo%200 == 100 && Math.random()<0.1 || myGameArea.frameNo > 500 && myGameArea.frameNo%200 == 100 && Math.random()<0.25) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = screen.availWidth/7;
+        minGap = screen.availWidth/6;
         maxGap = screen.availWidth/4;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(screen.availWidth/32, height, "red", x, 0));
@@ -157,16 +157,16 @@ function updateGameArea() {
     }
     if (myGameArea.x && myGameArea.y) {
         if (myUpBtn.clicked()) {
-            myGamePiece.y -= screen.availWidth/70;
+            myGamePiece.y -= screen.availWidth/80;
         }
         if (myDownBtn.clicked()) {
-            myGamePiece.y += screen.availWidth/70;
+            myGamePiece.y += screen.availWidth/80;
         }
         if (myLeftBtn.clicked()) {
-            myGamePiece.x -= screen.availWidth/70;
+            myGamePiece.x -= screen.availWidth/80;
         }
         if (myRightBtn.clicked()) {
-            myGamePiece.x += screen.availWidth/70;
+            myGamePiece.x += screen.availWidth/80;
         }
   }
   myScore.text = "SCORE: " + myGameArea.frameNo;
