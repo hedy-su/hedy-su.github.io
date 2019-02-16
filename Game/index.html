@@ -174,7 +174,8 @@ function updateGameArea() {
 
 
     //Ermittelt die Beschleunigung entsprechend der Bildschirmorientierung
-        if (window.DeviceOrientationEvent && everyinterval(20)) {
+    if (everyinterval(20)){
+        if (window.DeviceOrientationEvent) {
             window.addEventListener("devicemotion", function (event) {
             myGamePiece.x += event.acceleration.y/100;
             myGamePiece.y += event.acceleration.x/100;
@@ -206,7 +207,7 @@ function updateGameArea() {
         } else {
             alert("Sorry, ihr Gerät unterstützt keine Bildschirmorientierung!");
         }
-
+    }
 
 
 
