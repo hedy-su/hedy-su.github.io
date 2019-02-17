@@ -17,7 +17,7 @@ var myObstacles = [];
 var myScore;
 var myBackground;
 var myGameArea;
-var myObstaclesSpeed = 1.4;
+var myObstaclesSpeed = 1.55;
 
 function restartGame() {
     document.getElementById("myrestartbutton").style.display = "none";
@@ -141,8 +141,8 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(304/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()<0.1
-    ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()>0.9) {
+    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(320/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(320/myObstaclesSpeed)) == (Math.floor(160/myObstaclesSpeed)) && Math.random()<0.08
+    ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(320/myObstaclesSpeed)) == (Math.floor(160/myObstaclesSpeed)) && Math.random()>0.95) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
@@ -155,7 +155,7 @@ function updateGameArea() {
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGameArea.frameNo%300 == 0)
-            myObstaclesSpeed += 0.1;
+            myObstaclesSpeed += 0.05;
         myObstacles[i].x += -myObstaclesSpeed; // "difficulty level"
         myObstacles[i].update();
     }
