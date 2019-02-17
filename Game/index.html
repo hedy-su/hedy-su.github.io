@@ -113,14 +113,14 @@ function component(width, height, color, x, y, type) {
         this.y += this.speedY;
     }
     this.crashWith = function(otherobj) {
-        var myleft = this.x;
-        var myright = this.x + (this.width);
-        var mytop = this.y;
-        var mybottom = this.y + (this.height);
-        var otherleft = otherobj.x;
-        var otherright = otherobj.x + (otherobj.width);
-        var othertop = otherobj.y;
-        var otherbottom = otherobj.y + (otherobj.height);
+        var myleft = this.y;
+        var myright = this.y + (this.width);
+        var mytop = this.x;
+        var mybottom = this.x + (this.height);
+        var otherleft = otherobj.y;
+        var otherright = otherobj.y + (otherobj.width);
+        var othertop = otherobj.x;
+        var otherbottom = otherobj.x + (otherobj.height);
         var crash = true;
         if ((mybottom-50 < othertop) || (mytop+50 > otherbottom) || (myright-50 < otherleft) || (myleft+50 > otherright)) {
             crash = false;
