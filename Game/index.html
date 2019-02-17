@@ -27,7 +27,7 @@ function restartGame() {
     myGamePiece = {};
     myObstacles = [];
     myScore = {};
-    myObstaclesSpeed = 1.7;
+    myObstaclesSpeed = 1.6;
     document.getElementById("canvascontainer").innerHTML = "";
     startGame();
 }
@@ -141,7 +141,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(190) || myGameArea.frameNo%190 == 95 && Math.random()<0.3 || myGameArea.frameNo > 500 && myGameArea.frameNo%190 == 95 && Math.random()>0.5) {
+    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(304/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == 95 && Math.random()<0.3 ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == 95 && Math.random()>0.5) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
