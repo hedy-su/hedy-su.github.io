@@ -17,7 +17,7 @@ var myObstacles = [];
 var myScore;
 var myBackground;
 var myGameArea;
-var myObstaclesSpeed = 1.55;
+var myObstaclesSpeed = 1.65;
 var lastObstacleFrameNo;
 
 function restartGame() {
@@ -28,7 +28,7 @@ function restartGame() {
     myGamePiece = {};
     myObstacles = [];
     myScore = {};
-    myObstaclesSpeed = 1.55;
+    myObstaclesSpeed = 1.65;
     lastObstacleFrameNo = 0;
     document.getElementById("canvascontainer").innerHTML = "";
     startGame();
@@ -143,8 +143,9 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(Math.min(Math.floor(306/myObstaclesSpeed),180)) ||
-    (myGameArea.frameNo-lastObstacleFrameNo == 0.5*(Math.min(Math.floor(306/myObstaclesSpeed),180)) && Math.random()>0.7)){
+    if (myGameArea.frameNo == 1 || everyinterval(Math.min(Math.floor(324/myObstaclesSpeed),180)) ||
+    (myGameArea.frameNo-lastObstacleFrameNo == 0.5*(Math.min(Math.floor(324/myObstaclesSpeed),180))
+    && Math.random()>0.7 && myGameArea.frameNo%300>50 && myGameArea.frameNo%300<250)){
 
     // myGameArea.frameNo%(Math.min(Math.floor(320/myObstaclesSpeed),170)) == 0.5*(Math.min(Math.floor(320/myObstaclesSpeed),170))
     //&& Math.random()<0.1 || myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.min(Math.floor(320/myObstaclesSpeed),170)) ==
