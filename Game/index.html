@@ -141,7 +141,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(304/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == 95 && Math.random()<0.3 ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == 95 && Math.random()>0.5) {
+    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(304/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()<0.3 ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()>0.5) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
