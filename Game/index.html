@@ -37,7 +37,7 @@ function restartGame() {
 }
 function startGame() {
     myGameArea = new gamearea();
-    myGamePiece = new component(screen.availHeight/7, screen.availWidth/9, "rocket.png", screen.availHeight/5.5, screen.availWidth/2, "image");
+    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/5.5, screen.availWidth/2, "image");
     myBackground = new component(screen.availHeight*0.965, screen.availWidth*0.94, "background.jpg", 0, 0, "image");
     myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", screen.availHeight*0.6, screen.availWidth*0.08, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_up.png", screen.availHeight*0.8, screen.availWidth*1/2, "image");
