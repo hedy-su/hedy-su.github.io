@@ -17,7 +17,7 @@ var myObstacles = [];
 var myScore;
 var myBackground;
 var myGameArea;
-var myObstaclesSpeed = 1.7;
+var myObstaclesSpeed = 1.6;
 
 function restartGame() {
     document.getElementById("myrestartbutton").style.display = "none";
@@ -154,7 +154,7 @@ function updateGameArea() {
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGameArea.frameNo%300 == 0)
-            myObstaclesSpeed += 0.15;
+            myObstaclesSpeed += 0.1;
         myObstacles[i].x += -myObstaclesSpeed; // "difficulty level"
         myObstacles[i].update();
     }
