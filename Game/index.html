@@ -122,7 +122,7 @@ function component(width, height, color, x, y, type) {
         var othertop = otherobj.y;
         var otherbottom = otherobj.y + (otherobj.height);
         var crash = true;
-        if ((mybottom-3 < othertop) || (mytop+3 > otherbottom) || (myright-3 < otherleft) || (myleft+3 > otherright)) {
+        if ((mybottom-3 < othertop) || (mytop+3 > otherbottom) || (myright-1 < otherleft) || (myleft+5 > otherright)) {
             crash = false;
         }
         return crash;
