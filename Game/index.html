@@ -141,13 +141,13 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(320/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(320/myObstaclesSpeed)) == (Math.floor(160/myObstaclesSpeed)) && Math.random()<0.08
-    ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(320/myObstaclesSpeed)) == (Math.floor(160/myObstaclesSpeed)) && Math.random()>0.95) {
+    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(320/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(320/myObstaclesSpeed)) == (Math.floor(160/myObstaclesSpeed)) && Math.random()<0.05
+    ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(320/myObstaclesSpeed)) == (Math.floor(160/myObstaclesSpeed)) && Math.random()>0.99) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = screen.availWidth/6;
+        minGap = screen.availWidth/5.5;
         maxGap = screen.availWidth/4;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(screen.availWidth/25, height, "red", x, 0));
