@@ -34,7 +34,7 @@ function restartGame() {
 function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/7, screen.availWidth/2, "image");
-    myBackground = new component(screen.availHeight*0.975, screen.availWidth*0.955, "background.jpg", 0, 0, "image");
+    myBackground = new component(screen.availHeight*0.95, screen.availWidth*0.95, "background.jpg", 0, 0, "image");
     myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", screen.availHeight*0.6, screen.availWidth*0.08, "text");
     myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_up.png", screen.availHeight*0.8, screen.availWidth*1/2, "image");
     myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_down.png", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth, "image");
@@ -141,8 +141,8 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(Math.max(Math.floor(320/myObstaclesSpeed),180)) || myGameArea.frameNo%(Math.max(Math.floor(320/myObstaclesSpeed),180)) == 0.5*(Math.max(Math.floor(320/myObstaclesSpeed),180))
-    && Math.random()<0.08 || myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.max(Math.floor(320/myObstaclesSpeed),180)) == 0.5*(Math.max(Math.floor(320/myObstaclesSpeed),180)) && Math.random()>0.99) {
+    if (myGameArea.frameNo == 1 || everyinterval(Math.max(Math.floor(320/myObstaclesSpeed),140)) || myGameArea.frameNo%(Math.max(Math.floor(320/myObstaclesSpeed),140)) == 0.5*(Math.max(Math.floor(320/myObstaclesSpeed),140))
+    && Math.random()<0.2 || myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.max(Math.floor(320/myObstaclesSpeed),140)) == 0.5*(Math.max(Math.floor(320/myObstaclesSpeed),140)) && Math.random()>0.9) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/10;
         maxHeight = screen.availWidth*2/3;
