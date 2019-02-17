@@ -36,10 +36,10 @@ function startGame() {
     myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/7, screen.availWidth/2, "image");
     myBackground = new component(screen.availHeight*0.975, screen.availWidth*0.955, "background.jpg", 0, 0, "image");
     myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", screen.availHeight*0.6, screen.availWidth*0.08, "text");
-    myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "#1c7998", screen.availHeight*0.8, screen.availWidth*1/2);
-    myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "#1c7998", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth);
-    myLeftBtn = new component(screen.availWidth/8, screen.availWidth/8, "#1c7998", screen.availHeight*0.8-screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth);
-    myRightBtn = new component(screen.availWidth/8, screen.availWidth/8, "#1c7998", screen.availHeight*0.8+screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth);
+    myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrowup.png", screen.availHeight*0.8, screen.availWidth*1/2);
+    myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_down.png", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth);
+    myLeftBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_left.png", screen.availHeight*0.8-screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth);
+    myRightBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_right.png", screen.availHeight*0.8+screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth);
     myGameArea.start();
 }
 function gamearea() {
@@ -142,7 +142,7 @@ function updateGameArea() {
     myBackground.newPos();
     myBackground.update();
     if (myGameArea.frameNo == 1 || everyinterval(Math.min(Math.floor(320/myObstaclesSpeed),180)) || myGameArea.frameNo%(Math.min(Math.floor(320/myObstaclesSpeed),180)) == 0.5*(Math.min(Math.floor(320/myObstaclesSpeed),180))
-    && Math.random()<0.1 || myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.min(Math.floor(320/myObstaclesSpeed),180)) == 0.5*(Math.min(Math.floor(320/myObstaclesSpeed),180)) && Math.random()>0.99) {
+    && Math.random()<0.08 || myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.min(Math.floor(320/myObstaclesSpeed),180)) == 0.5*(Math.min(Math.floor(320/myObstaclesSpeed),180)) && Math.random()>0.99) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
