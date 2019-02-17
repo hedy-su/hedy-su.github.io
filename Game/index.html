@@ -17,7 +17,7 @@ var myObstacles = [];
 var myScore;
 var myBackground;
 var myGameArea;
-var myObstaclesSpeed = 1.45;
+var myObstaclesSpeed = 1.4;
 
 function restartGame() {
     document.getElementById("myrestartbutton").style.display = "none";
@@ -141,7 +141,8 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(304/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()<0.1||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()>0.8) {
+    if (myGameArea.frameNo == 1 || everyinterval(Math.floor(304/myObstaclesSpeed)) || myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()<0.1
+    ||myGameArea.frameNo > 500 && myGameArea.frameNo%(Math.floor(304/myObstaclesSpeed)) == (Math.floor(152/myObstaclesSpeed)) && Math.random()>0.9) {
         x = myGameArea.canvas.width;
         minHeight = screen.availWidth/50;
         maxHeight = screen.availWidth*2/3;
