@@ -41,9 +41,9 @@ function startGame() {
     myBackground = new component(screen.availWidth*0.965, screen.availHeight*0.94, "bigger_background.jpg", 0, 0, "image");
     myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", 0.57*Math.max(screen.availWidth, screen.availHeight), 0.08*Math.min(screen.availWidth, screen.availHeight), "text");
     myUpBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_up.png", screen.availWidth*0.7, screen.availHeight*0.5, "image");
-    myDownBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_down.png", screen.availWidth*0.7, screen.availHeight*0.5+screen.availWidth/4, "image");
-    myLeftBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_left.png", screen.availWidth*0.7-screen.availWidth/8, screen.availHeight*0.5+screen.availWidth/8, "image");
-    myRightBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_right.png", screen.availWidth*0.7+screen.availWidth/8, screen.availHeight*0.5+screen.availWidth/8, "image");
+    myDownBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_down.png", screen.availWidth*0.7, screen.availHeight*0.5+Math.min(screen.availWidth,screen.availHeight)/4, "image");
+    myLeftBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_left.png", screen.availWidth*0.7-Math.min(screen.availWidth,screen.availHeight)/8, screen.availHeight*0.5+Math.min(screen.availWidth,screen.availHeight)/8, "image");
+    myRightBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_right.png", screen.availWidth*0.7+Math.min(screen.availWidth,screen.availHeight)/8, screen.availHeight*0.5+Math.min(screen.availWidth,screen.availHeight)/8, "image");
     myGameArea.start();
 }
 function gamearea() {
@@ -188,9 +188,9 @@ function updateGameArea() {
     if (window.DeviceOrientationEvent) {
         window.addEventListener("devicemotion", function (event) {
 	if (window.orientation == 0){ // portrait
-		myGamePiece.y -= event.rotationRate.gamma/5000; // gamma -> y axis;
+		myGamePiece.y -= event.rotationRate.beta/5000; // gamma -> y axis;
 	}
-	if (window.orientation == 90){
+	if (window.orientation == 90){ // landscape - button on the right
 		myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x axis;
 	}
         // https://w3c.github.io/deviceorientation/
