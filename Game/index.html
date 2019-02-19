@@ -145,7 +145,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     myBackground.newPos();
     myBackground.update();
-    if (myGameArea.frameNo == 1 || everyinterval(Math.min(Math.floor(280/myObstaclesSpeed),150))) /*||
+    if (myGameArea.frameNo == 1 || everyinterval(Math.min(Math.floor(280/myObstaclesSpeed),150)) && myGameArea.frameNo-lastObstacleFrameNo > 50) /*||
     (myGameArea.frameNo-lastObstacleFrameNo == 0.5*nextRegularObstacleFrameNo
     && Math.random()>0.65 && myGameArea.frameNo%300>30 && myGameArea.frameNo%300<270)) */ {
 
