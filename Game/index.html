@@ -188,7 +188,7 @@ function updateGameArea() {
     if (window.DeviceOrientationEvent) {
         window.addEventListener("devicemotion", function (event) {
 	if (window.orientation == 0){ // portrait
-		myGamePiece.y -= event.rotationRate.beta/5000; // gamma -> y axis;
+		myGamePiece.y -= event.rotationRate.alpha/5000; // gamma -> y axis;
 	}
 	if (window.orientation == 90){ // landscape - button on the right
 		myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x axis;
