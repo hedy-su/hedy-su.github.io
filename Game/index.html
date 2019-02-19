@@ -155,14 +155,15 @@ function updateGameArea() {
         lastObstacleFrameNo = myGameArea.frameNo;
         //nextRegularObstacleFrameNo = everyinterval(Math.min(Math.floor(340/myObstaclesSpeed),180)) ? (Math.min(Math.floor(340/myObstaclesSpeed),180)) : -1;
         x = myGameArea.canvas.width;
-        minHeight = screen.availHeight/10;
+	y = myGameArea.canvas.height;
+        minHeight = screen.availHeight/8;
         maxHeight = screen.availHeight*2/3;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
         minGap = screen.availHeight/5.5;
         maxGap = screen.availHeight/4;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(screen.availWidth/25, height, "#ff0000", x, 0));
-        myObstacles.push(new component(screen.availWidth/25, x - height - gap, "#ff0000", x, height + gap));
+        myObstacles.push(new component(screen.availWidth/25, y - height - gap, "#ff0000", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGameArea.frameNo%300 == 0)
