@@ -37,19 +37,19 @@ function restartGame() {
 }
 function startGame() {
     myGameArea = new gamearea();
-    myGamePiece = new component(screen.availHeight/9, screen.availWidth/9, "rocket.png", screen.availHeight/5.5, screen.availWidth/2, "image");
-    myBackground = new component(screen.availHeight*0.965, screen.availWidth*0.94, "background.jpg", 0, 0, "image");
-    myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", screen.availHeight*0.6, screen.availWidth*0.08, "text");
-    myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_up.png", screen.availHeight*0.8, screen.availWidth*1/2, "image");
-    myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_down.png", screen.availHeight*0.8, screen.availWidth*1/2+2/8*screen.availWidth, "image");
-    myLeftBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_left.png", screen.availHeight*0.8-screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth, "image");
-    myRightBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_right.png", screen.availHeight*0.8+screen.availWidth/8, screen.availWidth*1/2+1/8*screen.availWidth, "image");
+    myGamePiece = new component(screen.availWidth/9, screen.availHeight/9, "rocket.png", screen.availWidth/5.5, screen.availHeight/2, "image");
+    myBackground = new component(screen.availWidth*0.965, screen.availHeight*0.94, "background.jpg", 0, 0, "image");
+    myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", 0.57*Math.max(screen.availWidth, screen.availHeight), 0.08*Math.min(screen.availWidth, screen.availHeight), "text");
+    myUpBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_up.png", screen.availWidth*0.7, screen.availHeight*0.5, "image");
+    myDownBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_down.png", screen.availWidth*0.7, screen.availHeight*0.5+screen.availWidth/4, "image");
+    myLeftBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_left.png", screen.availWidth*0.7-screen.availWidth/8, screen.availHeight*0.5+screen.availWidth/8, "image");
+    myRightBtn = new component(screen.availWidth/8, screen.availWidth/8, "arrow_right.png", screen.availWidth*0.7+screen.availWidth/8, screen.availHeight*0.5+screen.availWidth/8, "image");
     myGameArea.start();
 }
 function gamearea() {
     this.canvas = document.createElement("canvas");
-    this.canvas.width = screen.availHeight*0.965; //0.975
-    this.canvas.height = screen.availWidth*0.94; //0.955
+    this.canvas.width = screen.availWidth*0.94; //0.955 
+    this.canvas.height = screen.availHeight*0.965; //0.975
     document.getElementById("canvascontainer").appendChild(this.canvas);
     this.context = this.canvas.getContext("2d");
     this.frameNo = 0;
@@ -156,11 +156,11 @@ function updateGameArea() {
         nextRegularObstacleFrameNo = everyinterval(Math.min(Math.floor(340/myObstaclesSpeed),180))
         ? (Math.min(Math.floor(340/myObstaclesSpeed),180)) : -1;
         x = myGameArea.canvas.width;
-        minHeight = screen.availWidth/10;
-        maxHeight = screen.availWidth*2/3;
+        minHeight = screen.availHeight/10;
+        maxHeight = screen.availHeight*2/3;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-        minGap = screen.availWidth/5.5;
-        maxGap = screen.availWidth/4;
+        minGap = screen.availHeight/5.5;
+        maxGap = screen.availHeight/4;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
         myObstacles.push(new component(screen.availWidth/25, height, "#ff0000", x, 0));
         myObstacles.push(new component(screen.availWidth/25, x - height - gap, "#ff0000", x, height + gap));
@@ -187,8 +187,13 @@ function updateGameArea() {
     }
     if (window.DeviceOrientationEvent) {
         window.addEventListener("devicemotion", function (event) {
-        myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x coordinate; https://w3c.github.io/deviceorientation/
-        //myGamePiece.x += event.rotationRate.gamma/10000; // gamma -> y coordinate
+	if (window.orientation == 0){ // portrait
+		myGamePiece.y -= event.rotationRate.gamma/5000; // gamma -> y axis;
+	}
+	if (window.orientation == -90){
+		myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x axis;
+	}
+        // https://w3c.github.io/deviceorientation/
         }, true);
     } else {
         alert("Sorry, this device does not support the rotation function; please use the arrows to navigate!");
