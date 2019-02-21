@@ -39,11 +39,11 @@ function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(screen.availWidth/9, screen.availHeight/9, "rocket.png", screen.availWidth/5.5, screen.availHeight/2, "image");
     myBackground = new component(screen.availWidth*0.965, screen.availHeight*0.94, "background.jpg", 0, 0, "image");
-    myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", 0.57*Math.max(screen.availWidth, screen.availHeight), 0.08*Math.min(screen.availWidth, screen.availHeight), "text");
-    myUpBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_up.png", screen.availWidth*0.67, screen.availHeight*0.5, "image");
-    myDownBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_down.png", screen.availWidth*0.67, screen.availHeight*0.5+Math.min(screen.availWidth,screen.availHeight)/4, "image");
-    myLeftBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_left.png", screen.availWidth*0.67-Math.min(screen.availWidth,screen.availHeight)/8, screen.availHeight*0.5+Math.min(screen.availWidth,screen.availHeight)/8, "image");
-    myRightBtn = new component(Math.min(screen.availWidth,screen.availHeight)/8, Math.min(screen.availWidth,screen.availHeight)/8, "arrow_right.png", screen.availWidth*0.67+Math.min(screen.availWidth,screen.availHeight)/8, screen.availHeight*0.5+Math.min(screen.availWidth,screen.availHeight)/8, "image");
+    myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", 0.1*Math.max(screen.availWidth, screen.availHeight), 0.08*Math.min(screen.availWidth, screen.availHeight), "text");
+    myUpBtn = new component(Math.min(screen.availWidth,screen.availHeight)/6, Math.min(screen.availWidth,screen.availHeight)/6, "arrow_up.png", screen.availWidth*0.67, screen.availHeight*0.55, "image");
+    myDownBtn = new component(Math.min(screen.availWidth,screen.availHeight)/6, Math.min(screen.availWidth,screen.availHeight)/6, "arrow_down.png", screen.availWidth*0.67, screen.availHeight*0.55+Math.min(screen.availWidth,screen.availHeight)/3, "image");
+    myLeftBtn = new component(Math.min(screen.availWidth,screen.availHeight)/6, Math.min(screen.availWidth,screen.availHeight)/6, "arrow_left.png", screen.availWidth*0.67-Math.min(screen.availWidth,screen.availHeight)/6, screen.availHeight*0.55+Math.min(screen.availWidth,screen.availHeight)/6, "image");
+    myRightBtn = new component(Math.min(screen.availWidth,screen.availHeight)/6, Math.min(screen.availWidth,screen.availHeight)/6, "arrow_right.png", screen.availWidth*0.67+Math.min(screen.availWidth,screen.availHeight)/6, screen.availHeight*0.55+Math.min(screen.availWidth,screen.availHeight)/6, "image");
     myGameArea.start();
 }
 function gamearea() {
