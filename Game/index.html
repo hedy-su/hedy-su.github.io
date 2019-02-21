@@ -29,7 +29,7 @@ function restartGame() {
     myGamePiece = {};
     myObstacles = [];
     myScore = {};
-    myObstaclesSpeed = 1.7;
+    myObstaclesSpeed = 1.75;
     lastObstacleFrameNo = 0;
     nextRegularObstacleFrameNo = -1;
     document.getElementById("canvascontainer").innerHTML = "";
@@ -192,6 +192,9 @@ function updateGameArea() {
 	}
 	if (window.orientation == 90){ // landscape - button on the right
 		myGamePiece.y -= event.rotationRate.beta/5000; // beta -> x axis;
+	}
+	if (window.orientation == -90){ // landscape - button on the left
+		myGamePiece.y += event.rotationRate.beta/5000; // beta -> x axis;
 	}
         // https://w3c.github.io/deviceorientation/
         }, true);
