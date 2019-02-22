@@ -38,7 +38,7 @@ function restartGame() {
 function startGame() {
     myGameArea = new gamearea();
     myGamePiece = new component(Math.max(screen.availWidth,screen.availHeight)/9, Math.min(screen.availWidth,screen.availHeight)/9, "rocket.png", screen.availWidth/5.5, screen.availHeight/2, "image");
-    myBackground = new component(screen.availWidth*0.965, screen.availHeight*0.94, "background.jpg", 0, 0, "image");
+    myBackground = new component(screen.availWidth*0.965, screen.availHeight*0.95, "background.jpg", 0, 0, "image");
     myScore = new component("10vmin", "Comic Sans MS Bold", "#e0f8fb", 0.12*Math.max(screen.availWidth, screen.availHeight), 0.11*Math.min(screen.availWidth, screen.availHeight), "text");
     myUpBtn = new component(Math.min(screen.availWidth,screen.availHeight)/7, Math.min(screen.availWidth,screen.availHeight)/7, "arrow_up.png", screen.availWidth*0.67, screen.availHeight*0.5, "image");
     myDownBtn = new component(Math.min(screen.availWidth,screen.availHeight)/7, Math.min(screen.availWidth,screen.availHeight)/7, "arrow_down.png", screen.availWidth*0.67, screen.availHeight*0.5+Math.min(screen.availWidth,screen.availHeight)/3.5, "image");
@@ -49,7 +49,7 @@ function startGame() {
 function gamearea() {
     this.canvas = document.createElement("canvas");
     this.canvas.width = screen.availWidth*0.965; //0.955 
-    this.canvas.height = screen.availHeight*0.94; //0.975
+    this.canvas.height = screen.availHeight*0.95; //0.975
     document.getElementById("canvascontainer").appendChild(this.canvas);
     this.context = this.canvas.getContext("2d");
     this.frameNo = 0;
