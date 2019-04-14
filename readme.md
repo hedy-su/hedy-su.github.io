@@ -1,0 +1,1 @@
+An HTML5 spaceship game using rotation sensors, developed as an adaptive web app for smartphones.
